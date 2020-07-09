@@ -5,7 +5,6 @@
     <div id="vcomments"></div>
     <script src="/js/av-min.js"></script>
     <script src='/js/Valine.min.js'></script>
-
     <script type="text/javascript">
         new Valine({
             el: '#vcomments' ,
@@ -19,5 +18,15 @@
             meta: {{ .Site.Params.valine.meta }},
             requiredFields: {{ .Site.Params.valine.requiredFields }},
         });
+
+        document.getElementsByClassName('vpower txt-right')[0].remove();
+        let $comments = document.getElementById('vcomments');
+        let $vpanel = document.getElementsByClassName('vpanel')[0];
+        let $vcards = document.getElementsByClassName('vcards')[0];
+        let $vcount = document.getElementsByClassName('vcount')[0];
+        $comments.insertBefore($vcards,$vpanel);
+        $comments.insertBefore($vcount,$vcards);
+        document.getElementsByClassName('leancloud-visitors-count')[0].style.fontStyle='normal'
+
     </script>
 {{ end }}
