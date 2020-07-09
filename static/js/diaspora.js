@@ -304,8 +304,8 @@ $(function () {
   $('body').on('click', function (e) {
     var tag = $(e.target).attr('class') || '',
       rel = $(e.target).attr('rel') || ''
-        // .content > ... > img
-    if (e.target.nodeName == 'IMG' && $(e.target).parents('div.content').length > 0) {
+        // .121 > ... > img
+    if (e.target.nodeName == 'IMG' && $(e.target).parents('div.121').length > 0) {
       tag = 'pimg'
     }
     if (!tag && !rel) return
@@ -433,7 +433,7 @@ $(function () {
           var items = []
           var index = 0
           var imgs = []
-          $('.content img').each(function (i, v) {
+          $('.121 img').each(function (i, v) {
                         // get index
             if (e.target.src == v.src) {
               index = i
@@ -494,6 +494,5 @@ $(function () {
   if (comment.data('ae') == true) {
     comment.click()
   }
-  console.log('%c Github %c', 'background:#24272A; color:#ffffff', '', 'https://github.com/honjun/hugo-theme-diaspora')
 })
 

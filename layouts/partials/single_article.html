@@ -25,9 +25,12 @@
                 <h1 class="title">
                 {{ .Title }}</h1>
                 <div class="stuff">
-                    <!-- <span id="busuanzi_container_site_pv">阅读 <count id="busuanzi_value_site_pv"></count></span> -->
                     <span>{{ .Date.Format .Site.Params.date_format }}</span>
                     <span>字数 {{ .Content | countwords  }}</span>
+
+                    <span id="{{ .RelPermalink }}" class="leancloud_visitors" data-flag-title="Your Article Title">
+                        阅读 <i class="leancloud-visitors-count">1</i>
+                    </span>
                     <!-- {{ $taxo := "tags" }}
                     <ul  class="post-tags-list">
                         {{ range .Param $taxo }}
@@ -103,6 +106,15 @@
                     {{ end }}
                 {{ end }}
             {{ end }}
+
+        </ul>
+    </div>
+    <div class="relate">
+        <ul>
+            <div class="post-comment">
+                <!-- 加入评论功能 -->
+                {{ partial "comments.html" . }}
+            </div>
         </ul>
     </div>
 </div>
