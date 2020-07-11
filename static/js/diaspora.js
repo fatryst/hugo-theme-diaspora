@@ -60,7 +60,9 @@ var Diaspora = {
           document.title = state.t
           $('#preview').html($(data).filter('#single'))
           Diaspora.preview()
-          setTimeout(function () { Diaspora.player() }, 0)
+          setTimeout(function () {
+            Diaspora.player()
+          }, 0)
         })
       }
     })
@@ -97,6 +99,18 @@ var Diaspora = {
           Diaspora.loaded()
           break
       }
+      comment_option.path = tag.pathname
+      valine.init(comment_option);
+      if (!$('#vcomments').is(":empty")) {
+        document.getElementsByClassName('vpower txt-right')[0].remove();
+        let $comments = document.getElementById('vcomments');
+        let $vpanel = document.getElementsByClassName('vpanel')[0];
+        let $vcards = document.getElementsByClassName('vcards')[0];
+        let $vcount = document.getElementsByClassName('vcount')[0];
+        $comments.insertBefore($vcards, $vpanel);
+        $comments.insertBefore($vcount, $vcards);
+        document.getElementsByClassName('leancloud-visitors-count')[0].style.fontStyle = 'normal'
+      }
       setTimeout(function () {
         Diaspora.player()
         $('#top').show()
@@ -108,7 +122,7 @@ var Diaspora = {
     })
   },
   preview: function () {
-        // preview toggle
+    // preview toggle
     $('#preview').one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
       var previewVisible = $('#preview').hasClass('show')
       if (previewVisible) {
@@ -170,10 +184,10 @@ var Diaspora = {
   loading: function () {
     var w = window.innerWidth
     var css = '<style class="loaderstyle" id="loaderstyle' + w + '">' +
-            '@-moz-keyframes loader' + w + '{100%{background-position:' + w + 'px 0}}' +
-            '@-webkit-keyframes loader' + w + '{100%{background-position:' + w + 'px 0}}' +
-            '.loader' + w + '{-webkit-animation:loader' + w + ' 3s linear infinite;-moz-animation:loader' + w + ' 3s linear infinite;}' +
-            '</style>'
+      '@-moz-keyframes loader' + w + '{100%{background-position:' + w + 'px 0}}' +
+      '@-webkit-keyframes loader' + w + '{100%{background-position:' + w + 'px 0}}' +
+      '.loader' + w + '{-webkit-animation:loader' + w + ' 3s linear infinite;-moz-animation:loader' + w + ' 3s linear infinite;}' +
+      '</style>'
     $('.loaderstyle').remove()
     $('head').append(css)
     $('#loader').removeClass().addClass('loader' + w).show()
@@ -205,11 +219,13 @@ $(function () {
     cover.t = $('#cover')
     cover.w = cover.t.attr('width')
     cover.h = cover.t.attr('height')
-      ;(cover.o = function () {
-        $('#mark').height(window.innerHeight)
-      })()
+    ;(cover.o = function () {
+      $('#mark').height(window.innerHeight)
+    })()
     if (cover.t.prop('complete')) {
-      setTimeout(function () { cover.t.load() }, 0)
+      setTimeout(function () {
+        cover.t.load()
+      }, 0)
     }
     cover.t.on('load', function () {
       ;(cover.f = function () {
@@ -304,19 +320,19 @@ $(function () {
   $('body').on('click', function (e) {
     var tag = $(e.target).attr('class') || '',
       rel = $(e.target).attr('rel') || ''
-        // .121 > ... > img
+    // .121 > ... > img
     if (e.target.nodeName == 'IMG' && $(e.target).parents('div.121').length > 0) {
       tag = 'pimg'
     }
     if (!tag && !rel) return
     switch (true) {
-            // nav menu
+      // nav menu
       case (tag.indexOf('switchmenu') != -1):
         window.scrollTo(0, 0)
         $('html, body').toggleClass('mu')
         return false
         break
-            // next page
+      // next page
       case (tag.indexOf('more') != -1):
         tag = $('.more')
         if (tag.data('status') == 'loading') {
@@ -343,13 +359,13 @@ $(function () {
           $('#primary').append($(data).find('.post'))
           $(window).scrollTop(tempScrollTop + 100)
           Diaspora.loaded()
-          $('html,body').animate({ scrollTop: tempScrollTop + 400 }, 500)
+          $('html,body').animate({scrollTop: tempScrollTop + 400}, 500)
         }, function () {
           tag.html('加载更多').data('status', 'loaded')
         })
         return false
         break
-            // home
+      // home
       case (tag.indexOf('icon-home') != -1):
         $('.toc').fadeOut(100)
         if ($('#preview').hasClass('show')) {
@@ -359,39 +375,39 @@ $(function () {
         }
         return false
         break
-            // qrcode
+      // qrcode
       case (tag.indexOf('icon-wechat') != -1):
         if ($('.icon-wechat').hasClass('tg')) {
           $('#qr').toggle()
         } else {
           $('.icon-wechat').addClass('tg')
-          $('#qr').qrcode({ width: 128, height: 128, text: location.href}).toggle()
+          $('#qr').qrcode({width: 128, height: 128, text: location.href}).toggle()
         }
         return false
         break
-            // audio play
+      // audio play
       case (tag.indexOf('icon-play') != -1):
         $('#audio')[0].play()
         $('.icon-play').removeClass('icon-play').addClass('icon-pause')
         return false
         break
-            // audio pause
+      // audio pause
       case (tag.indexOf('icon-pause') != -1):
         $('#audio')[0].pause()
         $('.icon-pause').removeClass('icon-pause').addClass('icon-play')
         return false
         break
-            // history state
+      // history state
       case (tag.indexOf('cover') != -1):
         Diaspora.HS($(e.target).parent(), 'push')
         return false
         break
-            // history state
+      // history state
       case (tag.indexOf('posttitle') != -1):
         Diaspora.HS($(e.target), 'push')
         return false
         break
-            // prev, next post
+      // prev, next post
       case (rel == 'prev' || rel == 'next'):
         if (rel == 'prev') {
           var t = $('#prev_next a')[0].text
@@ -402,9 +418,9 @@ $(function () {
         Diaspora.HS($(e.target), 'replace')
         return false
         break
-            // toc
+      // toc
       case (tag.indexOf('toc-text') != -1 || tag.indexOf('toc-link') != -1
-                  || tag.indexOf('toc-number') != -1):
+        || tag.indexOf('toc-number') != -1):
         hash = ''
         if (e.target.nodeName == 'SPAN') {
           hash = $(e.target).parent().attr('href')
@@ -417,7 +433,7 @@ $(function () {
         }, 300)
         return false
         break
-            // quick view
+      // quick view
       case (tag.indexOf('pviewa') != -1):
         $('body').removeClass('mu')
         setTimeout(function () {
@@ -426,7 +442,7 @@ $(function () {
         }, 300)
         return false
         break
-            // photoswipe
+      // photoswipe
       case (tag.indexOf('pimg') != -1):
         var pswpElement = $('.pswp').get(0)
         if (pswpElement) {
@@ -434,7 +450,7 @@ $(function () {
           var index = 0
           var imgs = []
           $('.121 img').each(function (i, v) {
-                        // get index
+            // get index
             if (e.target.src == v.src) {
               index = i
             }
@@ -453,7 +469,7 @@ $(function () {
             allowRotationOnUserZoom: true,
             history: false,
             getThumbBoundsFn: function (index) {
-                            // See Options -> getThumbBoundsFn section of documentation for more info
+              // See Options -> getThumbBoundsFn section of documentation for more info
               var thumbnail = imgs[index],
                 pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
                 rect = thumbnail.getBoundingClientRect()
@@ -466,10 +482,10 @@ $(function () {
         }
         return false
         break
-              // comment
+      // comment
       case tag.indexOf('comment') != -1:
         Diaspora.loading(),
-                comment = $('#gitalk-container')
+          comment = $('#gitalk-container')
         gitalk = new Gitalk({
           clientID: comment.data('ci'),
           clientSecret: comment.data('cs'),
@@ -489,7 +505,7 @@ $(function () {
         break
     }
   })
-    // 是否自动展开评论
+  // 是否自动展开评论
   comment = $('#gitalk-container')
   if (comment.data('ae') == true) {
     comment.click()

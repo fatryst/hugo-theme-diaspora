@@ -1,10 +1,20 @@
-<p style="text-align: center;">
-  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
-</p>
 <script>
   var siteTitle = {{ .Site.Title }};
+  var comment_option = {
+    el: '#vcomments',
+    appId: '{{ .Site.Params.valine.appId }}',
+    appKey: '{{ .Site.Params.valine.appKey }}',
+    notify: '{{ .Site.Params.valine.notify }}',
+    verify: '{{ .Site.Params.valine.verify }}',
+    avatar: '{{ .Site.Params.valine.avatar }}',
+    placeholder: '{{ .Site.Params.valine.placeholder }}',
+    visitor: '{{ .Site.Params.valine.visitor }}',
+    meta: {{ .Site.Params.valine.meta }},
+    requiredFields: {{ .Site.Params.valine.requiredFields }},
+  };
+
 </script>
-<script src="/js/jquery.min.js"></script>
+
 <script src="/js/plugin.js"></script>
 <script src="/js/diaspora.js"></script>
 <script src="/js/custom.js"></script>
