@@ -32,6 +32,22 @@ input {
     border: 0;
 }
 
+.vpower.txt-right {
+    display: none !important;
+}
+
+.vsys {
+    display: none !important;
+}
+
+.leancloud-visitors-count {
+    font-style: normal;
+}
+
+.vpanel {
+    margin-top: 2em;
+}
+
 #vcomments {
     padding-bottom: 3em;
 }
