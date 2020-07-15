@@ -111,6 +111,7 @@ var Diaspora = {
         $comments.insertBefore($vcount, $vcards);
         document.getElementsByClassName('leancloud-visitors-count')[0].style.fontStyle = 'normal'
       }
+      $('canvas').css('display','none');
       setTimeout(function () {
         Diaspora.player()
         $('#top').show()
