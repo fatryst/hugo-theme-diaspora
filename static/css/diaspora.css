@@ -357,7 +357,13 @@ pre .keyword,pre .javascript .function {color:#cc99cc;}
     content: "\e609";
 }
 .icon-icon:before {
-    content: "\e60e";
+    /*content: "\e60e";*/
+    content: '';
+    display: block;
+    width: 21px;
+    height: 21px;
+    background: url('/img/logo_min.png');
+    background-size: cover;
 }
 .icon-logo:before {
     content: "\e60d";
