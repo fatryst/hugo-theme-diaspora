@@ -436,6 +436,7 @@ $(function () {
         break
       // quick view
       case (tag.indexOf('pviewa') != -1):
+        console.log(12121)
         $('body').removeClass('mu')
         setTimeout(function () {
           Diaspora.HS($(e.target), 'push')

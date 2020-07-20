@@ -1,7 +1,7 @@
 <div class="nav">
   <ul id="menu-menu" class="menu">
     {{ range .Site.Params.menu }}
-        <li ><a target="{{ .target }}" href="{{ .link }}" class="pviewa">{{ .name }}</a></li>
+      <li><a target="{{ .target }}" href="/{{ .link }}/" class="pviewa">{{ .name }}</a></li>
     {{ end }}
     <div id="search-input-wrap" class="on">
       <div id="search-input-icon">
