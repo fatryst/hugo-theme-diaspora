@@ -1,0 +1,90 @@
+baseurl = "https://fafa.im"
+languageCode = "zh-CN"
+hasCJKLanguage = true
+theme = "Diaspora"
+themesDir = "./themes/"
+title ="息羽悠游"
+# Define the number of posts per page
+paginate = 10
+
+disablePathToLower = true
+summaryLength = 86
+
+[params.iconshow]
+    category = true
+    series = true
+    tag = true
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+
+[permalinks]
+    post = "/:year/:month/:day/:title"
+
+[params]
+    # Tell me who you are
+    author = "息羽悠游"
+    bio = "息羽悠游 - fafa - Programmer - Gopher"
+    location = "Earth"
+    site_description = ""
+    copyright  = ""
+    avatar = "img/114.png"
+    # Enter your email address to display your Gravatar icon in the profile. If not set the theme
+    # will fallback to the avatar.
+    gravatar = "admin@fafa.im"
+    logo = "img/logo.png"
+    favicon = "img/32.png"
+    disable_mathjax = false # set to true to disable MathJax
+
+    # define which types of pages should be shown. By default the type with the most regular pages
+    mainSections = []
+
+    # Format dates with Go's time formatting
+    date_format = "January 2, 2006"
+
+
+    # Add custom assets with their paths relative to the static folder
+  custom_css = []
+  custom_js  = []
+
+# Create custom menu entries by defining a label and a link for
+# them. Since you can also link posts, you've the option the
+# place the links before or after them.
+#
+# E.g.: "Home" appears before all linked posts in the menu
+# and "Tags" / "Categories" after them.
+[[params.menu]]
+    name   = "关于"
+    link   = "about"
+    target = "_blank"
+[[params.menu]]
+    name   = "归档"
+    link   = "archives"
+    target = ""
+[[params.menu]]
+    name   = "分类"
+    link   = "categories"
+    target = "categories"
+[[params.menu]]
+    name   = "系列"
+    link   = "series"
+    target = "series"
+[[params.menu]]
+    name   = "标签"
+    link   = "tags"
+    target = "tags"
+
+[params.valine]
+    enable = true
+    appId = "duEiTdazYJ0QKytwOcqY66Ej-9Nh9j0Va"
+    appKey = "Q2TtnKG5yyqKS3k2bpBxl9iP"
+    notify = false
+    verify = true
+    avatar = "mp"
+    placeholder = "说点什么吧..."
+    visitor = true
+    recordIP = true
+    meta = ['nick']
+    requiredFields = ['nick']
